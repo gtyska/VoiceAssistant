@@ -77,8 +77,7 @@ def run(error_and_message, isPrintingErrors=False):
         try:
             query = re.search(re.escape(left) + "(.*)" + re.escape(" on google"), message).group(1)
         except Exception:
-            msg_not_supported = "I am sorry, but I don't support that question."
-            return 0, msg_not_supported
+            query = None
         return open_google(query)
 
     elif "open google " in message:
@@ -115,8 +114,7 @@ def run(error_and_message, isPrintingErrors=False):
         try:
             query = re.search(re.escape(left) + "(.*)" + re.escape(right), message).group(1)
         except Exception:
-            msg_not_supported = "I am sorry, but I don't support that question."
-            return 0, msg_not_supported
+            query = None
 
         return open_yt(query)
 
@@ -142,8 +140,7 @@ def run(error_and_message, isPrintingErrors=False):
                 city_name = re.search(re.escape("in ") + "(.*)", message).group(1)
                 city_name = city_name.split(" ")[0]
             except Exception:
-                msg_not_supported = "I am sorry, but I don't support that question."
-                return 0, msg_not_supported
+                city_name = None
 
         error, result = weather_for_city(option_=3, city_name=city_name, isPrintingErrors=isPrintingErrors)
 
@@ -159,8 +156,7 @@ def run(error_and_message, isPrintingErrors=False):
                     city_name = re.search(re.escape("in ") + "(.*)", message).group(1)
                     city_name = city_name.split(" ")[0]
                 except Exception:
-                    msg_not_supported = "I am sorry, but I don't support that question."
-                    return 0, msg_not_supported
+                    city_name = None
 
             error, result = weather_for_city(option_=4, city_name=city_name, isPrintingErrors=isPrintingErrors)
 
@@ -177,8 +173,7 @@ def run(error_and_message, isPrintingErrors=False):
                     city_name = re.search(re.escape("in ") + "(.*)", message).group(1)
                     city_name = city_name.split(" ")[0]
                 except Exception:
-                    msg_not_supported = "I am sorry, but I don't support that question."
-                    return 0, msg_not_supported
+                    city_name = None
 
             error, result = weather_for_city(option_=5, city_name=city_name, isPrintingErrors=isPrintingErrors)
 
@@ -195,8 +190,7 @@ def run(error_and_message, isPrintingErrors=False):
                     city_name = re.search(re.escape("in ") + "(.*)", message).group(1)
                     city_name = city_name.split(" ")[0]
                 except Exception:
-                    msg_not_supported = "I am sorry, but I don't support that question."
-                    return 0, msg_not_supported
+                    city_name = None
 
             error, result = weather_for_city(option_=6, city_name=city_name, isPrintingErrors=isPrintingErrors)
 
@@ -213,14 +207,15 @@ def run(error_and_message, isPrintingErrors=False):
         elif (" is " in message or "what's" in message or "today" in message) and "in" in message:
             try:
                 city_name = re.search(re.escape("in ") + "(.*)", message).group(1)
+                city_name = city_name.split(" ")[0]
             except Exception:
-                msg_not_supported = "I am sorry, but I don't support that question."
-                return 0, msg_not_supported
-            city_name = city_name.split(" ")[0]
+                city_name = None
+
             isTodaysWeather = True
 
         if " is " in message or "what's" in message:
             isTodaysWeather = True
+
         if isTodaysWeather:
             option_ = 2
             if "tomorrow" in message:

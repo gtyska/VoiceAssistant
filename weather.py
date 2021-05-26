@@ -15,7 +15,7 @@ day_after_tomorrow_weather = 5
 next_hours_weather = 6
 
 # If you want to use weather api you must generate your api key from https://openweathermap.org/ and assign it to variable api_key
-api_key = "4a84c7a8412f04b9b7d5acd62b40df4f"
+api_key = ""
 
 msg_error_connection = "I am sorry, but I have to work on my connection with current weather data. " \
                        "If you want to report the problem, contact my author by email: {}".format(email)

@@ -67,12 +67,18 @@ def run(error_and_message, isPrintingErrors=False):
         msg_new_name = "From now on I will call you {}".format(name)
         return 0, msg_new_name
 
+    elif ("search " in message or "open " in message) and " on google" in message:
+        left = ""
+        if "search " in message:
+            left = "search "
+        elif "open " in message:
+            left = "open "
+
+        query = re.search(re.escape(left) + "(.*)" + re.escape(" on google"), message).group(1)
+        return open_google(query)
+
     elif "open google " in message:
         return open_google()
-
-    elif ("search " in message or "open " in message) and " on google" in message:
-        query = re.search(re.escape("search ") + "(.*)" + re.escape(" on google"), message).group(1)
-        return open_google(query)
 
     elif "what time is it" in message or "what hour is it" in message:
         str_time_now = time.strftime("%I:%M %p.", time.localtime())
@@ -180,7 +186,7 @@ def run(error_and_message, isPrintingErrors=False):
                     msg_hourly += hour_forecast + " "
                 return 0, (msg_hourly, hourly_icons[0])
 
-        elif (" is " in message or "what's" in message) and "in" in message:
+        elif (" is " in message or "what's" in message or "today" in message) and "in" in message:
             city_name = re.search(re.escape("in ") + "(.*)", message).group(1)
             city_name = city_name.split(" ")[0]
             isTodaysWeather = True

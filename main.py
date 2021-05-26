@@ -9,7 +9,9 @@ if __name__ == "__main__":
     gui = gui.GUI_Main_Window()
     gui.setup(MainWindow)
     MainWindow.show()
+    gui.make_microphone_unclickable()
     engine.introduction()
+    gui.make_microphone_clickable()
     if not isConnectedToInternet():
         gui.label_clevera_text.setPlainText("The speech recognition won't work without Internet connection.")
     else:

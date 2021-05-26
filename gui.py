@@ -165,3 +165,8 @@ class GUI_Main_Window(object):
         self.frame_display_msg.setVisible(False)
         QtWidgets.QApplication.processEvents()
 
+    def make_microphone_unclickable(self):
+        self.button_speak.setEnabled(False)
+
+    def make_microphone_clickable(self):
+        self.button_speak.setEnabled(True)

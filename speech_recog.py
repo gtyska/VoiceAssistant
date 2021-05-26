@@ -4,8 +4,14 @@ import errors as err
 
 recognizer = sr.Recognizer()
 speaking_engine = pyttsx3.init()
+
+# English voice below is setted only if it is downloaded (otherwise - the default voice is used):
 english_voice_ID = "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_EN-US_ZIRA_11.0"
-speaking_engine.setProperty("voice", english_voice_ID)
+
+try:
+    speaking_engine.setProperty("voice", english_voice_ID)
+except Exception:
+    pass
 
 
 def saveName(name):

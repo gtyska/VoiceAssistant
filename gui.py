@@ -167,6 +167,8 @@ class GUI_Main_Window(object):
 
     def make_microphone_unclickable(self):
         self.button_speak.setEnabled(False)
+        QtWidgets.QApplication.processEvents()
 
     def make_microphone_clickable(self):
         self.button_speak.setEnabled(True)
+        QtWidgets.QApplication.processEvents()

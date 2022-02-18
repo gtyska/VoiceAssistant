@@ -1,5 +1,5 @@
 # Voice_Assistant
-This is a project of a Voice Assistent Desktop Application. The application runs on Python 3.9. 
+This is a Voice Assistent Desktop Application. The application runs on Python 3.9. 
 The part of the project is connecting with OpenWeatherMap API to collect and process weather data. To be able to have an access to weather forecast, get your own API key on https://openweathermap.org/api and assign in as a text to the variable api_key in file weather.py
 
 If you want to run a project, download all the files and directories and run file main.py
